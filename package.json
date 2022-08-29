@@ -1,0 +1,29 @@
+{
+  "name": "express-request-decrypt",
+  "version": "0.0.1",
+  "main": "./index",
+  "scripts": {
+    "prepack": "npx tsc --noEmit false",
+    "postpublish": "npm run clean",
+    "clean": "npx module-kit-clean"
+  },
+  "keywords": [
+    "axios",
+    "crypto",
+    "encrypt"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zvs001/express-request-decrypt"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "module-kit": "^0.1.0",
+    "typescript": "^4.8.2"
+  },
+  "dependencies": {
+    "invariant": "^2.0.0",
+    "lodash": "^4.0.0"
+  },
+  "peerDependencies": {}
+}
