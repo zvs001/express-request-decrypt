@@ -27,6 +27,7 @@ import { createDecryptMiddleWare } from 'express-request-decrypt'
 const app = express.Router()
 
 app.use(createDecryptMiddleWare({
+  allowNotEncrypted: process.env.NODE_ENV === 'test',
   onDecrypt(encTxt) {
     return CryptoJS.AES.decrypt(encTxt, 'secret').toString(CryptoJS.enc.Utf8)
   },

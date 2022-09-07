@@ -4,12 +4,13 @@ import invariant from 'invariant'
 
 interface ExpressRequestDecryptParams {
   onDecrypt(encTxt: string): string
+  allowNotEncrypted?: boolean
   isEncryptionRequired?(req: express.Request): boolean
 }
 
 export const createDecryptMiddleWare = (params: ExpressRequestDecryptParams):
   express.RequestHandler => (req, res, next) => {
-  const { isEncryptionRequired, onDecrypt } = params
+  const { isEncryptionRequired, onDecrypt, allowNotEncrypted } = params
   const { body, method } = req
   if (_.isEmpty(body)) return next()
 
@@ -20,7 +21,11 @@ export const createDecryptMiddleWare = (params: ExpressRequestDecryptParams):
       return res.status(500).send({ error :'Processing is not accepted.' })
     }
 
-    return next()
+    if(allowNotEncrypted) {
+      return next()
+    } else {
+      return res.status(500).send({ error: 'Raw body is not allowed' })
+    }
   } // for case when client send content-type: json
 
   let decrypted = onDecrypt(body)
