@@ -1,6 +1,6 @@
 {
   "name": "express-request-decrypt",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "./index",
   "scripts": {
     "prepack": "npx tsc --noEmit false",
