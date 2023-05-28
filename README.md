@@ -13,6 +13,16 @@ or
 
 ```npm i -S express-request-decrypt```
 
+#### express setup
+
+Make sure you accept text/plain content data.
+```ts
+import bodyParser from 'body-parser'
+
+const app = express.Router()
+
+app.use(bodyParser.text())
+```
 
 ## Usage
 
